@@ -1,0 +1,14 @@
+@import 'variables';
+
+.navbar {
+    height: 5vh;
+
+    a {
+        z-index: 1;
+        font-size: 19px;
+
+        &:hover {
+            color: $warning !important;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@import 'variables.scss';
+
+header {
+    background: no-repeat fixed center/100% url('../images/header.jpg');
+    height: 90vh;
+
+    .titleHeader {
+        background-color: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+}

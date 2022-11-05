@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Photos{% endblock %}
+
+{% block body %}
+        <div class="btn-group col-12" role="group" aria-label="Basic checkbox toggle button group">
+
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+        <a href="{{ path('comment') }}" class="btn btn-dark btn-outline-warning" for="btncheck1">Commentaires</a>
+
+        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+        <a href="{{ path('photo') }}" class="btn btn-dark btn-outline-warning active" for="btncheck2">Photos</a>
+
+        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+        <a href="{{ path('comment') }}" class="btn btn-dark btn-outline-warning" for="btncheck3">Infos Utile</a>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="col-10 row">
+            {% for photo in photos %}
+                <div class="col-3 my-3">
+                    <img class="col-12" src="uploads/{{ photo.userPhoto }}" alt="avatar-user">
+                    {% if app.user and app.user.email == photo.user.email or is_granted('ROLE_ADMIN') %}
+                        {% include "photo/_delete_form.html.twig" %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if app.user %}
+        <div class="d-flex justify-content-center row">
+            <div class="my-5 text-center col-8">
+                {{ form_start(photoForm) }}
+                    {{ form_label(photoForm.userFile, null,
+                        {label: 'Le titre do votre commentaire', 'class': 'mb-0', 'label_attr': {'class': 'h6'}}) }}
+                    {{ form_widget(photoForm.userFile,
+                        {'attr': {'placeholder': 'Le titre', 'class': 'shadow-sm p-2 bg-white rounded fw-light'}}) }}
+                    <button type="submit" class="btn btn-lg btn-primary col-12 mt-2">Envoyer</button>
+                {{ form_end(photoForm) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

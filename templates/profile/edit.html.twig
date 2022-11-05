@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <div class="btn-group col-12" role="group" aria-label="Basic checkbox toggle button group">
+
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+        <a href="{{ path('comment') }}" class="btn btn-dark btn-outline-warning" for="btncheck1">Commentaires</a>
+
+        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+        <a href="{{ path('photo') }}" class="btn btn-dark btn-outline-warning" for="btncheck2">Photos</a>
+
+        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+        <a href="{{ path('comment') }}" class="btn btn-dark btn-outline-warning" for="btncheck3">Infos Utile</a>
+    </div>
+
+    <main class="p-5 edit-profile">
+        <h1 class="h1 text-center text-dark">Editer mes informations</h1>
+        <h2 class="h3 text-center text-dark">Ajoutez et mettez à jour vos informations</h2>
+        <div class="d-flex justify-content-center">
+
+            <div class="d-flex justify-content-center container col-md-6 mt-4">
+                <div class="row w-100">
+
+                    {% for flash_error in app.flashes('verify_email_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                    {% endfor %}
+
+                    {{ form_start(form) }}
+                        {{ form_label(form.userusername, null,
+                            {label: 'Veuillez choisir un pseudonyme', 'label_attr': {'class': 'h6'}}) }}
+                        {{ form_widget(form.userusername,
+                            {'attr': {'placeholder': 'Votre pseudonyme', 'class': 'shadow-sm p-2 mb-1 bg-white rounded fw-light mb-3'}}) }}
+
+                        {{ form_label(form.email, null,
+                            {label: 'Veuillez saisir votre adresse email', 'label_attr': {'class': 'h6'}}) }}
+                        {{ form_widget(form.email,
+                            {'attr': {'placeholder': 'exemple@mail.com', 'class': 'shadow-sm p-2 mb-1 bg-white rounded fw-light mb-3'}}) }}
+
+                        {{ form_label(form.firstname, null,
+                            {label: 'Votre Prenom', 'label_attr': {'class': 'h6'}}) }}
+                        {{ form_widget(form.firstname,
+                            {'attr': {'placeholder': 'Votre Prenom', 'class': 'shadow-sm p-2 mb-1 bg-white rounded fw-light mb-3'}}) }}
+
+                        {{ form_label(form.lastname, null,
+                            {label: 'Votre Nom', 'label_attr': {'class': 'h6'}}) }}
+                        {{ form_widget(form.lastname,
+                            {'attr': {'placeholder': 'Votre Nom', 'class': 'shadow-sm p-2 mb-1 bg-white rounded fw-light mb-3'}}) }}
+
+                       <button type="submit" class="btn btn-lg btn-primary col-12 mb-5">Enregistrer</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

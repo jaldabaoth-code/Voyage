@@ -1,0 +1,28 @@
+@import 'variables.scss';
+@import "~bootstrap/scss/bootstrap";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+body {
+    background-color: $light;
+    color: $primary;
+
+
+}
+
+main  {
+    min-height: 80vh !important;
+}
+
+h1,
+h2 {
+    font-family: $title-font;
+}
+
+h3 {
+    font-family: $font-size-p;
+    font-weight: 300;
+}
+
+p {
+    font-size: $font-size-p;
+}

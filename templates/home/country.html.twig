@@ -1,0 +1,6 @@
+{{ form_start(formCountry) }}
+    {{ form_label(formCountry.country, 'Coisissez votre destination : ', {'attr': {'class': 'form-label'}}) }}
+    {{ form_widget(formCountry.country, {'attr': {'class': 'p-2 bg-white rounded'}}) }}
+
+    <button type="submit" class="btn btn-primary col-12">Send</button>
+{{ form_end(formCountry) }}
