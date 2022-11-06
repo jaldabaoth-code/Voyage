@@ -1,39 +1,25 @@
 {% extends 'layout.html.twig' %}
 
-{% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
-
-{% block title %}Inscription{% endblock %}
+{% block title %}Registration{% endblock %}
 
 {% block body %}
-    <div class="d-flex justify-content-center container col-md-6 mt-4">
-        <div class="row w-100">
-            {% for flash_error in app.flashes('verify_email_error') %}
-                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-            {% endfor %}
-
-            <h2 class="h2">Inscription</h2>
+    <h1 class="title text-center">Registration</h1>
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-column col-6 mt-5">
             {{ form_start(registrationForm) }}
-                {{ form_label(registrationForm.userusername, null,
-                    {label: 'Veuillez choisir un pseudonyme', 'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(registrationForm.userusername,
-                    {'attr': {'placeholder': 'Votre pseudonyme', 'class': 'shadow-sm p-2 mb-1 bg-white rounded fw-light mb-3'}}) }}
+                {{ form_label(registrationForm.userusername, 'Please choose a nickname : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(registrationForm.userusername, {'attr': {'placeholder': 'Your nickname', 'class': 'form-control mb-3'}}) }}
 
-                {{ form_label(registrationForm.email, null,
-                    {label: 'Veuillez saisir votre adresse email', 'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(registrationForm.email,
-                    {'attr': {'placeholder': 'exemple@mail.com', 'class': 'shadow-sm p-2 mb-1 bg-white rounded fw-light mb-3'}}) }}
+                {{ form_label(registrationForm.email, 'Please enter your email address : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'exemple@mail.com', 'class': 'form-control mb-3'}}) }}
 
-                {{ form_label(registrationForm.plainPassword.first, null,
-                    {label: 'Veuillez saisir votre Mot de passe', 'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(registrationForm.plainPassword.first,
-                    {'attr': {'placeholder': 'Votre mot de passe', 'class': 'shadow-sm p-2 mb-1 bg-white rounded fw-light mb-3'}}) }}
+                {{ form_label(registrationForm.plainPassword.first, 'Please choose your Password : ',  {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(registrationForm.plainPassword.first, {'attr': {'placeholder': 'Your Password', 'class': 'form-control mb-3'}}) }}
 
-                {{ form_label(registrationForm.plainPassword.second, null,
-                    {label: 'Veuillez répéter votre Mot de passe', 'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(registrationForm.plainPassword.second,
-                    {'attr': {'placeholder': 'Répéter votre mot de passe', 'class': 'shadow-sm p-2 mb-1 bg-white rounded fw-light mb-3'}}) }}
+                {{ form_label(registrationForm.plainPassword.second, 'Please repeat your Password : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(registrationForm.plainPassword.second, {'attr': {'placeholder': 'Repeat your Password', 'class': 'form-control mb-3'}}) }}
 
-                <button type="submit" class="btn btn-lg btn-primary col-12 mb-5">Créer votre compte</button>
+                <button class="btn btn-lg btn-primary text-light col-12 mt-2" type="submit">Create your account</button>
             {{ form_end(registrationForm) }}
         </div>
     </div>

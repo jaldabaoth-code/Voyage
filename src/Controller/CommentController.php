@@ -21,7 +21,6 @@ class CommentController extends AbstractController
         $comment = new Comment();
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             if ($this->getUser()) {
                 $entityManager = $this->getDoctrine()->getManager();
@@ -31,13 +30,11 @@ class CommentController extends AbstractController
             }
         }
         $comments = $commentRepository->findAll();
-
         return $this->render('comment/index.html.twig', [
             'commentForm' => $form->createView(),
             'comments' => $comments,
         ]);
     }
-
 
     /**
      * @Route("comment/delete/{id}", name="delete_comment", methods={"POST"})
@@ -52,5 +49,4 @@ class CommentController extends AbstractController
         }
         return $this->redirectToRoute('comment');
     }
-    
 }

@@ -2,27 +2,53 @@
 @import "~bootstrap/scss/bootstrap";
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
+
 body {
     background-color: $light;
     color: $primary;
 
+    /* Main */
+    main  {
+        min-height: 80vh;
+    }
 
-}
+    /* Login */
+    .title {
+        margin-top: 15vh;
+    }
 
-main  {
-    min-height: 80vh !important;
-}
+    /* Navbar */
+    .navbar {
+        a:hover {
+            color: $warning;
+        }
+    }
 
-h1,
-h2 {
-    font-family: $title-font;
-}
+    /* Header */
+    header {
+        background: no-repeat fixed center/200% url('../images/header.jpg');
+        height: 100vh;
 
-h3 {
-    font-family: $font-size-p;
-    font-weight: 300;
-}
+        .titleHomeHeader {
+            background-color: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+    }
 
-p {
-    font-size: $font-size-p;
+    /* Footer */
+    footer {
+        .fab:hover {
+            opacity: .7;
+            transition-duration: .7;
+        }
+    }
+
+    /* Comments */
+    .commentUser:hover {
+        color: $primary;
+    }
 }

@@ -56,13 +56,4 @@ class PhotoController extends AbstractController
         }
         return $this->redirectToRoute('photo');
     }
-
-
-
-
-
-
-
-
-
 }

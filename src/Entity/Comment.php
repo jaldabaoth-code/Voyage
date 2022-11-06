@@ -45,7 +45,6 @@ class Comment
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -57,7 +56,6 @@ class Comment
     public function setComment(string $comment): self
     {
         $this->comment = $comment;
-
         return $this;
     }
 
@@ -69,7 +67,6 @@ class Comment
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 }

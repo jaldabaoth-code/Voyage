@@ -61,13 +61,11 @@ class Photo
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 
     /**
      * Get the value of userFile
-     *
      * @return  File
      */ 
     public function getUserFile()
@@ -77,15 +75,12 @@ class Photo
 
     /**
      * Set the value of userFile
-     *
      * @param  File  $userFile
-     *
      * @return  self
      */ 
     public function setUserFile(File $userFile)
     {
         $this->userFile = $userFile;
-
         if ($userFile) {
             $this->updatedAt = new DateTime('now');
           }
@@ -93,7 +88,6 @@ class Photo
 
     /**
      * Get the value of userPhoto
-     *
      * @return  string
      */ 
     public function getUserPhoto()
@@ -103,15 +97,12 @@ class Photo
 
     /**
      * Set the value of userPhoto
-     *
      * @param  string  $userPhoto
-     *
      * @return  self
      */ 
     public function setUserPhoto(?string $userPhoto)
     {
         $this->userPhoto = $userPhoto;
-
         return $this;
     }
 }

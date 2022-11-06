@@ -23,11 +23,4 @@ class CountryFormType extends AbstractType
             ->add('country', CountryType::class)
         ;
     }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
-    }
 }

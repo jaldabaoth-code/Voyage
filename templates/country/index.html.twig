@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Country{% endblock %}
+
+{% block body %}
+    <h1 class="title text-center">Country</h1>
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-column col-6 mt-5">
+            {{ form_start(formCountry) }}
+                {{ form_label(formCountry.country, 'Choose your destination : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(formCountry.country, {'attr': {'class': 'form-control mb-3'}}) }}
+
+                <button class="btn btn-lg btn-primary text-light col-12 mt-2" type="submit">Send</button>
+            {{ form_end(formCountry) }}
+        </div>
+    </div>
+{% endblock %}

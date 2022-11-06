@@ -3,36 +3,17 @@
 {% block title %}Profile{% endblock %}
 
 {% block body %}
-    <div class="btn-group col-12" role="group" aria-label="Basic checkbox toggle button group">
-
-        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-        <a href="{{ path('comment') }}" class="btn btn-dark btn-outline-warning" for="btncheck1">Commentaires</a>
-
-        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-        <a href="{{ path('photo') }}" class="btn btn-dark btn-outline-warning" for="btncheck2">Photos</a>
-
-        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-        <a href="{{ path('comment') }}" class="btn btn-dark btn-outline-warning" for="btncheck3">Infos Utile</a>
-    </div>
-
-    <main class="container p-md-5 p-1">
-        <div class="profile bg-dark p-lg-5 p-4">
-            <div class="d-flex flex-direction-row align-items-center">
-                <div class="profile-titles">
-                    <div class="d-flex flex-row align-items-center">
-                        Email : {{ user.email }}</br>
-                        {% if user.firstname is not null %}
-                            Prenom : {{ user.firstname }}</br>
-                        {% endif %}
-                        {% if user.lastname is not null %}
-                            Nom: {{ user.lastname }}</br>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    <h1 class="title text-center">Profile</h1>
     <div class="d-flex justify-content-center">
-        <a class="btn btn-primary mb-5" href="{{ path('profile_edit', {userusername: app.user.userusername} ) }}">Editer votre profile</a>
+        <div class="col-6 bg-dark p-4 mt-5">
+            Email : {{ user.email }}</br>
+            {% if user.firstname is not null %}
+                First Name : {{ user.firstname }}</br>
+            {% endif %}
+            {% if user.lastname is not null %}
+                Last Name : {{ user.lastname }}</br>
+            {% endif %}
+            <a class="btn btn-lg btn-primary text-light col-12 mt-5" href="{{ path('profile_edit', { userusername: app.user.userusername }) }}">Edit your profile</a>
+        </div>
     </div>
 {% endblock %}

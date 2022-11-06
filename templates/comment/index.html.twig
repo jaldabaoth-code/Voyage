@@ -1,47 +1,39 @@
 {% extends 'layout.html.twig' %}
 
-
-{% form_theme commentForm 'bootstrap_4_layout.html.twig' %}
-
-{% block title %}Commentaires{% endblock %}
+{% block title %}Comments{% endblock %}
 
 {% block body %}
-    <div class="btn-group col-12" role="group" aria-label="Basic checkbox toggle button group">
+    <h1 class="title text-center">Comments</h1>
+    {# Comment form #}
+    {% if app.user %}
+        <div class="d-flex justify-content-center">
+            <div class="d-flex flex-column col-6 mt-5">
+                {{ form_start(commentForm) }}
+                    {{ form_label(commentForm.title, 'The title of your comment', {'label_attr': {'class': 'h6'}}) }}
+                    {{ form_widget(commentForm.title, {'attr': {'placeholder': 'The title', 'class': 'form-control mb-3'}}) }}
 
-        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-        <a href="{{ path('comment') }}" class="btn btn-dark btn-outline-warning active" for="btncheck1">Commentaires</a>
+                    {{ form_label(commentForm.comment, 'Your comment', {'label_attr': {'class': 'h6'}}) }}
+                    {{ form_widget(commentForm.comment, {'attr': {'placeholder': 'Comment', 'class': 'form-control mb-3'}}) }}
 
-        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-        <a href="{{ path('photo') }}" class="btn btn-dark btn-outline-warning" for="btncheck2">Photos</a>
-
-    </div>
-    <div class="d-flex justify-content-center row">
-        <div class="mt-5">
+                    <button class="btn btn-lg btn-primary text-light col-12 mt-2" type="submit">Send</button>
+                {{ form_end(commentForm) }}
+            </div>
+        </div>
+    {% endif %}
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-column col-8 mt-5">
             {% for comment in comments %}
-                <div class="my-2">
-                    <h4>{{ comment.title }} --  <a href="#" class="text-warning text-decoration-none">{{ comment.user.userusername }}</a></h4>
-                    <p class="m-0 p-0">Commentaire : {{ comment.comment }}</p></br>
+                <div class="border border-dark rounded-3 my-2 p-3">
+                    <a class="commentUser h4 text-warning text-decoration-none" href="{{ path('profile_show', { userusername: comment.user.userusername }) }}">{{ comment.user.userusername }}</a>
+                    <p>{{ comment.title }} : {{ comment.comment }}</p>
                     {% if app.user and app.user.email == comment.user.email or is_granted('ROLE_ADMIN') %}
-                        {% include "comment/_delete_form.html.twig" %}
+                        <form method="POST" action="{{ path('delete_comment', { id: comment.id }) }}" onsubmit="return confirm('Are you sure you want to delete this comment ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
                     {% endif %}
                 </div>
             {% endfor %}
         </div>
-        {% if app.user %}
-            <div class="my-5 text-center col-8">
-                {{ form_start(commentForm) }}
-                    {{ form_label(commentForm.title, null,
-                        {label: 'Le titre de votre commentaire', 'class': 'mb-0', 'label_attr': {'class': 'h6'}}) }}
-                    {{ form_widget(commentForm.title,
-                        {'attr': {'placeholder': 'Le titre', 'class': 'shadow-sm p-2 bg-white rounded fw-light'}}) }}
-
-                    {{ form_label(commentForm.comment, null,
-                        {label: 'Votre commentaire', 'class': 'mb-0', 'label_attr': {'class': 'h6'}}) }}
-                    {{ form_widget(commentForm.comment,
-                        {'attr': {'placeholder': 'Commentaire', 'class': 'shadow-sm p-2 bg-white rounded fw-light'}}) }}
-                    <button type="submit" class="btn btn-lg btn-primary col-12 mt-2">Envoyer</button>
-                {{ form_end(commentForm) }}
-            </div>
-        {% endif %}
     </div>
 {% endblock %}

@@ -42,9 +42,7 @@ class UserFixtures extends Fixture
             $contributor,
             '123456789'
         ));
-
         $manager->persist($contributor);
-
         // Création d’un utilisateur de type “administrateur”
         $admin = new User();
         $admin->setUserusername('admin');
@@ -54,9 +52,7 @@ class UserFixtures extends Fixture
             $admin,
             'admin123456789'
         ));
-
         $manager->persist($admin);
-
         // Sauvegarde des 2 nouveaux utilisateurs :
         $manager->flush();
     }
