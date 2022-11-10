@@ -21,22 +21,16 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('userusername', TextType::class)
+            ->add('username', TextType::class)
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'Veuillez saisir votre mot de passe'],
-                'second_options' => ['label' => 'Veuillez répéter votre mot de passe'],
-                'invalid_message' => 'Les deux mots de passe doivent être identiques',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Entrez votre mot de passe',
-                    ]),
+                    new NotBlank(),
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Un mot de passe doit contenir au minimum {{ limit }} caractères ',
-                        // max length allowed by Symfony for security reasons
+                        // Max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],

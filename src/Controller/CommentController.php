@@ -10,18 +10,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
+/**
+ * @Route("/comment", name="comment_")
+ */
 class CommentController extends AbstractController
 {
     /**
-     * @Route("/comment", name="comment")
+     * @Route("", name="index")
      */
     public function index(Request $request, CommentRepository $commentRepository): Response
     {
         $comment = new Comment();
-        $form = $this->createForm(CommentFormType::class, $comment);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $formComment = $this->createForm(CommentFormType::class, $comment);
+        $formComment->handleRequest($request);
+        if ($formComment->isSubmitted() && $formComment->isValid()) {
             if ($this->getUser()) {
                 $entityManager = $this->getDoctrine()->getManager();
                 $comment->setUser($this->getUser());
@@ -31,13 +33,13 @@ class CommentController extends AbstractController
         }
         $comments = $commentRepository->findAll();
         return $this->render('comment/index.html.twig', [
-            'commentForm' => $form->createView(),
-            'comments' => $comments,
+            'formComment' => $formComment->createView(),
+            'comments' => $comments
         ]);
     }
 
     /**
-     * @Route("comment/delete/{id}", name="delete_comment", methods={"POST"})
+     * @Route("/delete/{id}", name="delete", methods={"POST"})
      */
     public function deleteComment(Request $request, Comment $comment): Response
     {
@@ -45,8 +47,7 @@ class CommentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($comment);
             $entityManager->flush();
-            $this->addFlash('danger', 'The program is deleted');
         }
-        return $this->redirectToRoute('comment');
+        return $this->redirectToRoute('comment_index');
     }
 }

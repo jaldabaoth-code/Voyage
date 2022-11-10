@@ -9,19 +9,19 @@
                     <a class="nav-link" aria-current="page" href="{{ path('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ path('country') }}">Country</a>
+                    <a class="nav-link" aria-current="page" href="{{ path('country_index') }}">Country</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ path('comment') }}">Comments</a>
+                    <a class="nav-link" aria-current="page" href="{{ path('comment_index') }}">Comments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ path('photo') }}">Pictures</a>
+                    <a class="nav-link" aria-current="page" href="{{ path('photo_index') }}">Photos</a>
                 </li>
             </div>
             <div class="d-flex ">
                 {% if app.user %}
                     <li class="nav-item">
-                        <a class="nav-link text-warning" aria-current="page" href="{{ path('profile_show', { userusername: app.user.userusername }) }}">{{ app.user.userusername }}</a>
+                        <a class="nav-link text-warning" aria-current="page" href="{{ path('profile_index', { username: app.user.username }) }}">{{ app.user.username }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ path('app_logout') }}">Logout</a>

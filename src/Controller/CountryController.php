@@ -8,13 +8,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
+/**
+ * @Route("/country", name="country_")
+ */
 class CountryController extends AbstractController
 {
     /**
-     * @Route("/country", name="country")
+     * @Route("", name="index")
      */
-    public function country(Request $request): Response
+    public function index(Request $request): Response
     {
         $formCountry = $this->createForm(CountryFormType::class);
         $formCountry->handleRequest($request);

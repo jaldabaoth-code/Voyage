@@ -13,7 +13,7 @@
             {% if user.lastname is not null %}
                 Last Name : {{ user.lastname }}</br>
             {% endif %}
-            <a class="btn btn-lg btn-primary text-light col-12 mt-5" href="{{ path('profile_edit', { userusername: app.user.userusername }) }}">Edit your profile</a>
+            <a class="btn btn-lg btn-primary text-light col-12 mt-5" href="{{ path('profile_edit', { username: app.user.username }) }}">Edit profile</a>
         </div>
     </div>
 {% endblock %}

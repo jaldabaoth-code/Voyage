@@ -1,27 +1,27 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Pictures{% endblock %}
+{% block title %}Photos{% endblock %}
 
 {% block body %}
-    <h1 class="title text-center">Pictures</h1>
+    <h1 class="title text-center">Photos</h1>
     {% if app.user %}
         <div class="d-flex justify-content-center row">
             <div class="my-5 col-6">
-                {{ form_start(photoForm) }}
-                    {{ form_widget(photoForm.userFile, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_start(formPhoto) }}
+                    {{ form_widget(formPhoto.photoFile, {'attr': {'class': 'form-control mb-3'}}) }}
 
                     <button class="btn btn-lg btn-primary text-light col-12 mt-2" type="submit">Send</button>
-                {{ form_end(photoForm) }}
+                {{ form_end(formPhoto) }}
             </div>
         </div>
     {% endif %}
     <div class="d-flex justify-content-center">
-        <div class="row col-10 mt-5">
+        <div class="row col-10 mt-5 justify-content-center">
             {% for photo in photos %}
                 <div class="col-3 my-3 mx-1">
-                    <img class="col-12 h-75 mb-2" src="uploads/{{ photo.userPhoto }}" alt="avatar-user">
+                    <img class="col-12 h-75 mb-2" src="uploads/{{ photo.photo }}" alt="avatar-user">
                     {% if app.user and app.user.email == photo.user.email or is_granted('ROLE_ADMIN') %}
-                        <form method="POST" action="{{ path('delete_photo', {'id': photo.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <form method="POST" action="{{ path('photo_delete', {id: photo.id}) }}" onsubmit="return confirm('Are you sure you want to delete this photo ?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ photo.id) }}">
                             <button class="btn btn-danger col-12">Delete</button>
                         </form>

@@ -10,18 +10,6 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class UserFixtures extends Fixture
 {
-    private const USERS_PASSWORDS = [
-        'user' => [
-            'password' => '123456789',
-            'role' => 'ROLE_USER',
-        ],
-        'admin' => [
-            'password' => 'admin123456789',
-            'role' => 'ROLE_ADMIN',
-        ],
-    ];
-
-
     private UserPasswordEncoderInterface $passwordEncoder;
     private HttpClientInterface $client;
 
@@ -33,27 +21,21 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        // Création d’un utilisateur de type “contributeur” (= auteur)
+        // Creation of an user type “contributor” (= author)
         $contributor = new User();
-        $contributor->setUserusername('user');
+        $contributor->setUsername('user');
         $contributor->setEmail('user@user.com');
         $contributor->setRoles(['ROLE_USER']);
-        $contributor->setPassword($this->passwordEncoder->encodePassword(
-            $contributor,
-            '123456789'
-        ));
+        $contributor->setPassword($this->passwordEncoder->encodePassword($contributor, '123456789'));
         $manager->persist($contributor);
-        // Création d’un utilisateur de type “administrateur”
+        // Creation of an user tupe “administrator”
         $admin = new User();
-        $admin->setUserusername('admin');
+        $admin->setUsername('admin');
         $admin->setEmail('admin@admin.com');
         $admin->setRoles(['ROLE_ADMIN']);
-        $admin->setPassword($this->passwordEncoder->encodePassword(
-            $admin,
-            'admin123456789'
-        ));
+        $admin->setPassword($this->passwordEncoder->encodePassword($admin, 'admin123456789'));
         $manager->persist($admin);
-        // Sauvegarde des 2 nouveaux utilisateurs :
+        // Backup of the 2 new users
         $manager->flush();
     }
 }

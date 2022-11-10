@@ -27,14 +27,13 @@ class Photo
       * @ORM\Column(type="string", length=255, nullable=true)
       * @var string
       */
-    private $userPhoto;
+    private $photo;
 
     /**
-     * @Vich\UploadableField(mapping="poster_file", fileNameProperty="userPhoto")
-     * 
+     * @Vich\UploadableField(mapping="photo_file", fileNameProperty="photo")
      * @var File
      */
-    private $userFile;
+    private $photoFile;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="photos")
@@ -65,44 +64,44 @@ class Photo
     }
 
     /**
-     * Get the value of userFile
+     * Get the value of photoFile
      * @return  File
      */ 
-    public function getUserFile()
+    public function getPhotoFile()
     {
-        return $this->userFile;
+        return $this->photoFile;
     }
 
     /**
-     * Set the value of userFile
-     * @param  File  $userFile
+     * Set the value of photoFile
+     * @param  File  $photoFile
      * @return  self
      */ 
-    public function setUserFile(File $userFile)
+    public function setPhotoFile(File $photoFile)
     {
-        $this->userFile = $userFile;
-        if ($userFile) {
+        $this->photoFile = $photoFile;
+        if ($photoFile) {
             $this->updatedAt = new DateTime('now');
-          }
+        }
     }
 
     /**
-     * Get the value of userPhoto
+     * Get the value of photo
      * @return  string
      */ 
-    public function getUserPhoto()
+    public function getPhoto()
     {
-        return $this->userPhoto;
+        return $this->photo;
     }
 
     /**
-     * Set the value of userPhoto
-     * @param  string  $userPhoto
+     * Set the value of photo
+     * @param  string  $photo
      * @return  self
      */ 
-    public function setUserPhoto(?string $userPhoto)
+    public function setPhoto(?string $photo)
     {
-        $this->userPhoto = $userPhoto;
+        $this->photo = $photo;
         return $this;
     }
 }

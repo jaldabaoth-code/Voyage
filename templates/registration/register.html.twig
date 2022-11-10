@@ -6,21 +6,21 @@
     <h1 class="title text-center">Registration</h1>
     <div class="d-flex justify-content-center">
         <div class="d-flex flex-column col-6 mt-5">
-            {{ form_start(registrationForm) }}
-                {{ form_label(registrationForm.userusername, 'Please choose a nickname : ', {'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(registrationForm.userusername, {'attr': {'placeholder': 'Your nickname', 'class': 'form-control mb-3'}}) }}
+            {{ form_start(formRegister) }}
+                {{ form_label(formRegister.username, 'Please choose a nickname : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(formRegister.username, {'attr': {'placeholder': 'Your nickname', 'class': 'form-control mb-3'}}) }}
 
-                {{ form_label(registrationForm.email, 'Please enter your email address : ', {'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'exemple@mail.com', 'class': 'form-control mb-3'}}) }}
+                {{ form_label(formRegister.email, 'Please enter your email address : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(formRegister.email, {'attr': {'placeholder': 'exemple@mail.com', 'class': 'form-control mb-3'}}) }}
 
-                {{ form_label(registrationForm.plainPassword.first, 'Please choose your Password : ',  {'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(registrationForm.plainPassword.first, {'attr': {'placeholder': 'Your Password', 'class': 'form-control mb-3'}}) }}
+                {{ form_label(formRegister.plainPassword.first, 'Please choose your Password : ',  {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(formRegister.plainPassword.first, {'attr': {'placeholder': 'Your Password', 'class': 'form-control mb-3'}}) }}
 
-                {{ form_label(registrationForm.plainPassword.second, 'Please repeat your Password : ', {'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(registrationForm.plainPassword.second, {'attr': {'placeholder': 'Repeat your Password', 'class': 'form-control mb-3'}}) }}
+                {{ form_label(formRegister.plainPassword.second, 'Please repeat your Password : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(formRegister.plainPassword.second, {'attr': {'placeholder': 'Repeat your Password', 'class': 'form-control mb-3'}}) }}
 
-                <button class="btn btn-lg btn-primary text-light col-12 mt-2" type="submit">Create your account</button>
-            {{ form_end(registrationForm) }}
+                <button class="btn btn-lg btn-primary text-light col-12 mt-2" type="submit">Register</button>
+            {{ form_end(formRegister) }}
         </div>
     </div>
 {% endblock %}

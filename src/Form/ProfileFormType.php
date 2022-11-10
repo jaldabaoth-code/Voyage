@@ -19,7 +19,7 @@ class ProfileFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('userusername', TextType::class)
+            ->add('username', TextType::class)
             ->add('firstname')
             ->add('lastname')
         ;

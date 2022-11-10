@@ -16,12 +16,6 @@
         {% endblock %}
     </head>
     <body>
-        {# Flash message #}
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success m-0 p-0">
-                {{ message }}
-            </div>
-        {% endfor %}
         {% block navbar %}{% endblock %}
         <main>
             {% block body %}{% endblock %}

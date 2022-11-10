@@ -1,24 +1,26 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}Edit profile{% endblock %}
+
 {% block body %}
-    <h1 class="title text-center">Edit my information</h1>
+    <h1 class="title text-center">Edit profile</h1>
     <div class="d-flex justify-content-center">
         <div class="d-flex flex-column col-6 mt-5">
-            {{ form_start(form) }}
-                {{ form_label(form.userusername, 'Please choose new nickname : ', {'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(form.userusername, {'attr': {'placeholder': 'Your nickname', 'class': 'form-control mb-3'}}) }}
+            {{ form_start(formProfile) }}
+                {{ form_label(formProfile.username, 'Please choose new nickname : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(formProfile.username, {'attr': {'placeholder': 'Your nickname', 'class': 'form-control mb-3'}}) }}
 
-                {{ form_label(form.email, 'Please enter your new email address : ', {'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(form.email, {'attr': {'placeholder': 'exemple@mail.com', 'class': 'form-control mb-3'}}) }}
+                {{ form_label(formProfile.email, 'Please enter your new email address : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(formProfile.email, {'attr': {'placeholder': 'exemple@mail.com', 'class': 'form-control mb-3'}}) }}
 
-                {{ form_label(form.firstname, 'Your new firstname ', {'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(form.firstname, {'attr': {'placeholder': 'Your firstname : ', 'class': 'form-control mb-3'}}) }}
+                {{ form_label(formProfile.firstname, 'Your new firstname ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(formProfile.firstname, {'attr': {'placeholder': 'Your firstname : ', 'class': 'form-control mb-3'}}) }}
 
-                {{ form_label(form.lastname, 'Your new lastname : ', {'label_attr': {'class': 'h6'}}) }}
-                {{ form_widget(form.lastname,  {'attr': {'placeholder': 'Your lastname : ', 'class': 'form-control mb-3'}}) }}
+                {{ form_label(formProfile.lastname, 'Your new lastname : ', {'label_attr': {'class': 'h6'}}) }}
+                {{ form_widget(formProfile.lastname,  {'attr': {'placeholder': 'Your lastname : ', 'class': 'form-control mb-3'}}) }}
 
-                <button class="btn btn-lg btn-primary text-light col-12 mt-2" type="submit">Register</button>
-            {{ form_end(form) }}
+                <button class="btn btn-lg btn-primary text-light col-12 mt-2" type="submit">Edit</button>
+            {{ form_end(formProfile) }}
         </div>
     </div>
 {% endblock %}

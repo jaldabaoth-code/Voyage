@@ -40,9 +40,9 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
-    private string $userusername;
+    private string $username;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="user")
@@ -83,18 +83,15 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
     /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUsername(): string
+     * Get the value of userusername
+     */ 
+    public function getUsername()
     {
-        return (string) $this->email;
+        return $this->username;
     }
 
     /**
@@ -103,7 +100,7 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+        // Guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
         return array_unique($roles);
     }
@@ -129,9 +126,9 @@ class User implements UserInterface
     }
 
 
-    public function setUserusername(string $userusername): self
+    public function setUsername(string $username): self
     {
-        $this->userusername = $userusername;
+        $this->username = $username;
         return $this;
     }
 
@@ -174,7 +171,7 @@ class User implements UserInterface
     public function removeComment(Comment $comment): self
     {
         if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
+            // Set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
             }
@@ -203,12 +200,11 @@ class User implements UserInterface
     public function removePhoto(Photo $photo): self
     {
         if ($this->photos->removeElement($photo)) {
-            // set the owning side to null (unless already changed)
+            // Set the owning side to null (unless already changed)
             if ($photo->getUser() === $this) {
                 $photo->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -220,7 +216,6 @@ class User implements UserInterface
     public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
-
         return $this;
     }
 
@@ -233,13 +228,5 @@ class User implements UserInterface
     {
         $this->lastname = $lastname;
         return $this;
-    }
-
-    /**
-     * Get the value of userusername
-     */ 
-    public function getUserusername()
-    {
-        return $this->userusername;
     }
 }

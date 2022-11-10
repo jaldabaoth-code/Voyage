@@ -11,17 +11,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/photo", name="photo_")
+ */
 class PhotoController extends AbstractController
 {
     /**
-     * @Route("/photo", name="photo")
+     * @Route("", name="index")
      */
     public function index(Request $request, PhotoRepository $photoRepository): Response
     {
         $photo = new Photo();
-        $form = $this->createForm(PhotoFormType::class, $photo);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $formPhoto = $this->createForm(PhotoFormType::class, $photo);
+        $formPhoto->handleRequest($request);
+        if ($formPhoto->isSubmitted() && $formPhoto->isValid()) {
             if ($this->getUser()) {
                 $entityManager = $this->getDoctrine()->getManager();
                 $photo->setUser($this->getUser());
@@ -29,31 +32,26 @@ class PhotoController extends AbstractController
                 $entityManager->flush();
             }
         }
-
         $photos = $photoRepository->findAll();
-
         return $this->render('photo/index.html.twig', [
-            'photoForm' => $form->createView(),
-            'photos' => $photos,
+            'formPhoto' => $formPhoto->createView(),
+            'photos' => $photos
         ]);
     }
 
     /**
-    * @Route("photo/delete/{id}", name="delete_photo", methods={"POST"})
-    */
+     * @Route("/delete/{id}", name="delete", methods={"POST"})
+     */
     public function deletePhoto(Request $request, Photo $photo): Response
     {
-
         if ($this->isCsrfTokenValid('delete' . $photo->getId(), $request->request->get('_token'))) {
-            $filename = $photo->getUserPhoto();
+            $fileName = $photo->getPhoto();
             $fileSystem = new Filesystem();
-            $fileSystem->remove('%upload_directory%/public/uploads/'.$filename);
-
+            $fileSystem->remove('%upload_directory%/public/uploads/' . $fileName);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($photo);
             $entityManager->flush();
-            $this->addFlash('danger', 'The program is deleted');
         }
-        return $this->redirectToRoute('photo');
+        return $this->redirectToRoute('photo_index');
     }
 }
